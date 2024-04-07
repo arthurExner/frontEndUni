@@ -1,4 +1,6 @@
 var arr = [];
+var texts = document.querySelectorAll('input[type="text"]'); 
+var form = document.querySelector('.formulario'); 
 
 function clicarLi(event){   
     
@@ -41,13 +43,24 @@ function alreadySelected(texto, arr) {
     return false;
 }
 
+function checkForm() {
+    texts.forEach(text_input => {
+        text_input.addEventListener('focus', () => {
+            for (let check of form.querySelectorAll(".confirma")) {
+                check.remove();
+            }
+        })
+          
+    });
+}
+checkForm();
+
 function confirmacao(){
     const registro = document.getElementById('registroList');
     const nome = document.getElementById('nome');
     const sobrenome = document.getElementById('sobrenome');
     const cpf = document.getElementById('cpf');  
-    const form = document.querySelector('.formulario');  
-
+    
     registro.children.length;
 
     const confirma_dados = document.getElementsByClassName('confirma')    
@@ -57,14 +70,14 @@ function confirmacao(){
     } else if(registro.children.length > 5) {
         alert(`Limite de matérias atingido. Remova ${registro.children.length -5} matérias `);
     } else if(nome.value == '' || sobrenome.value == '' || cpf.value == '' ) {
-        alert("Faltam dados!");
+        alert("Faltam dados!");        
     } else if (confirma_dados.length == 0 ) {
-        alert("Confirme os dados!")
-    } else {
+        alert("Confirme os dados!")        
+    } else {                
+        alert("Matricula concluída")
         for (let check of form.querySelectorAll(".confirma")) {
             check.remove();
         }        
-        alert("Matricula concluída")        
     }
 }
 
