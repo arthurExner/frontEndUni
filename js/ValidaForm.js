@@ -54,36 +54,14 @@ class ValidaForm {
                 valid = false;
             }
             //validando cpf, usando outra classe já criada:
-            if (field.classList.contains('cpf')) { //lembrar que no classList NÃO PASSO O PONTO OU #
+            if (field.classList.contains('cpf')) {
                 if (!this.validaCPF(field)) {
                     this.criaErro(field, `CPF inválido.`);
                     valid = false;
                 }
-            }
-
-            //validando usuario:
-            if (field.classList.contains('usuario')) {
-                if (!this.validaUsuario(field)) valid = false;
-            }
+            }         
 
         }
-        return valid;
-    }
-
-    validaUsuario(field) {
-        let valid = true;
-        const usuario = field.value;
-        /*const validacao = usuario.replace(/\W/g,"");*/
-        if (usuario.match(/\W/)) {
-            valid = false;
-            this.criaErro(field, 'Usuário só pode conter letras e/ou números.');
-        }
-
-        if (usuario.length > 12 || usuario.length < 3) {
-            valid = false;
-            this.criaErro(field, 'Usuario precisa ter entre 3 e 12 caracteres.');
-        }
-
         return valid;
     }
 
